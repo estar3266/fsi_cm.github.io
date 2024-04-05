@@ -85,22 +85,16 @@ const stageClearImg = document.getElementsByClassName("stage-clear")[0];
 function clearStage() {
     clearInterval(timer);
 
-    // 20초 이하로는 빨라지지 않음
-    if (stage <= 8) {
-        // time = 60 - (stage * 5); // 남은 시간 초기화 (스테이지 진행 시 마다 5초씩 감소)
-        time = time
-    }
-    stage=stage; // 스테이지 값 1 추가
     cardDeck = [];
 
     stageClearImg.classList.add("show");
 
-    // 2초 후 다음 스테이지 시작
-    setTimeout(() => {
-        stageClearImg.classList.remove("show");
-        initScreen();
-        startGame();
-    }, 2000);
+    // // 2초 후 다음 스테이지 시작
+    // setTimeout(() => {
+    //     stageClearImg.classList.remove("show");
+    //     initScreen();
+    //     startGame();
+    // }, 2000);
 }
 
 // 게임 타이머 시작
@@ -294,6 +288,7 @@ function matchCard(indexArr) {
     if (checkClear() === true) {
         clearStage();
         stopGame(score);
+
         return;
     }
 
@@ -354,6 +349,7 @@ function showGameResult(score) {
         <strong>기록 : ${score}</strong>
     </span>
     `;
+    modal.classList.add("show");
 }
 
 // 모달창 닫으면 게임 재시작

@@ -354,11 +354,6 @@ function showGameResult(score) {
         <strong>기록 : ${score}</strong>
     </span>
     `;
-
-    modal.classList.add("show");
-    setTimeout(() => {
-        isFlip = true;
-    }, 1000000);
 }
 
 // 모달창 닫으면 게임 재시작

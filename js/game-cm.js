@@ -89,12 +89,6 @@ function clearStage() {
 
     stageClearImg.classList.add("show");
 
-    // // 2초 후 다음 스테이지 시작
-    // setTimeout(() => {
-    //     stageClearImg.classList.remove("show");
-    //     initScreen();
-    //     startGame();
-    // }, 2000);
 }
 
 // 게임 타이머 시작
@@ -114,11 +108,12 @@ function startTimer() {
 function makeCardDeck() {
     // 이미지 중에서 BOARD_SIZE만큼 랜덤으로 뽑도록 변경
     let randomNumberArr = [];
-
-    while (randomNumberArr.length < BOARD_SIZE) { // /2 추가
+    
+    while (randomNumberArr.length < BOARD_SIZE) {
         // 랜덤 값 뽑기
+        
         // 원본 let randomNumber = getRandom(CARD_IMG.length, 0);
-        let randomNumber_tmp = getRandom(CARD_IMG.length/2, 0);
+        let randomNumber_tmp = getRandom(CARD_IMG.length/2, 1);
         let randomNumber = randomNumber_tmp*2 - 1
 
 
@@ -134,11 +129,18 @@ function makeCardDeck() {
 
     shuffle(randomNumberArr);
 
-    // 섞은 값으로 카드 세팅
-    for (let i = 0; i < BOARD_SIZE; i++) {
-        cardDeck.push({card: CARD_IMG[randomNumberArr[i]].name, isOpen: false, isMatch: false});
-    }
 
+    // 섞은 값으로 카드 세팅
+    // 여기가 문제
+    // showGameResult(i);   
+    // for (let i = 0; i < BOARD_SIZE; i++) {
+    //     cardDeck.push({card: CARD_IMG[randomNumberArr[i]].name, isOpen: false, isMatch: false});
+    // }
+    let i = 0;
+    while(i<BOARD_SIZE){
+        cardDeck.push({card: CARD_IMG[randomNumberArr[i]].name, isOpen: false, isMatch: false});
+        i+=1;
+    }
     return cardDeck;
 }
 
@@ -159,6 +161,7 @@ const cardBack = document.getElementsByClassName("card__back");
 const cardFront = document.getElementsByClassName("card__front");
 
 function settingCardDeck() {
+
     for (let i = 0; i < BOARD_SIZE; i++) {
         gameBoard.innerHTML = gameBoard.innerHTML +
         `
@@ -170,6 +173,7 @@ function settingCardDeck() {
 
         cardFront[i].style.backgroundImage = `url('img/game-cm/card-pack/${cardDeck[i].card}.png')`;
     }
+
 }
 
 // 전체 카드 보여주는 함수
@@ -359,7 +363,7 @@ const modalCloseButton = document.getElementsByClassName("modal__content-close-b
 modal.addEventListener('click', function(e) {
     if (e.target === modal || e.target === modalCloseButton) {
         modal.classList.remove("show");
-        restartGame();
+        // restartGame();
     }
 });
 

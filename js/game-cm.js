@@ -38,14 +38,43 @@ let cardDeck = [];
 
 // 게임 시작
 function startGame() {
-    // 카드 덱 생성
-    makeCardDeck();
+    // 모달창을 통한 이미지 표시
+    showInitialModal();
 
-    // 카드 화면에 세팅
-    settingCardDeck();
+    // // 카드 덱 생성
+    // makeCardDeck();
 
-    // 최초 1회 전체 카드 보여줌
-    showCardDeck();
+    // // 카드 화면에 세팅
+    // settingCardDeck();
+
+    // // 최초 1회 전체 카드 보여줌
+    // showCardDeck();
+}
+
+// 초기 모달창 표시 함수
+function showInitialModal() {
+    const modalImage = document.createElement("img");
+    modalImage.src = "img/game-cm/manual.png"; // 여기에 특정 이미지 경로를 지정하세요.
+    // modalImage.style.width = "100%";
+    modalImage.style.width = "auto";
+    modalImage.style.height = "auto";
+
+    modalTitle.innerHTML = ''; // 기존 모달 내용을 비웁니다.
+    modalTitle.appendChild(modalImage); // 이미지를 모달 타이틀에 추가합니다.
+    modal.classList.add("show");
+
+    // 이미지 클릭 시 카드 덱 재생성
+    modalImage.addEventListener("click", function() {
+        modal.classList.remove("show");
+        // 카드 덱 생성
+        makeCardDeck();
+
+        // 카드 화면에 세팅
+        settingCardDeck();
+
+        // 최초 1회 전체 카드 보여줌
+        showCardDeck();
+    });
 }
 
 // 게임 재시작
@@ -355,6 +384,9 @@ function showGameResult(score) {
     `;
     modal.classList.add("show");
 }
+
+
+
 
 // 모달창 닫으면 게임 재시작
 const modalTitle = document.getElementsByClassName("modal__content-title")[0];

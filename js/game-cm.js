@@ -56,8 +56,9 @@ function showInitialModal() {
     const modalImage = document.createElement("img");
     modalImage.src = "img/game-cm/manual.png"; // 여기에 특정 이미지 경로를 지정하세요.
     // modalImage.style.width = "100%";
-    modalImage.style.width = "100vw";
     modalImage.style.height = "100vw";
+    modalImage.style.width = "auto";
+    
 
     modalTitle.innerHTML = ''; // 기존 모달 내용을 비웁니다.
     modalTitle.appendChild(modalImage); // 이미지를 모달 타이틀에 추가합니다.
